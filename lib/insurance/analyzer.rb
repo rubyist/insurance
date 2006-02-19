@@ -75,7 +75,7 @@ module Insurance
         require 'config/environment'
         Insurance.set_trace_func self.method(:line_trace_func).to_proc
         require 'application'
-        (Dir['app/models/*.rb'] + Dir['app/controllers/*.rb']).each { |f| load f }
+        (Dir['app/models/**/*.rb'] + Dir['app/controllers/**/*.rb']).each { |f| load f }
      end
     end
   end  

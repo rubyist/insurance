@@ -82,4 +82,4 @@ module Test
   end
 end
 
-Insurance::RailsAnalyzer.run(Dir['test/unit/*.rb'] + Dir['test/functional/*.rb'])
+Insurance::RailsAnalyzer.run(Dir['test/unit/**/*.rb'] + Dir['test/functional/**/*.rb'])
