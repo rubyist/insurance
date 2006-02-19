@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Insurance</title>
+    <link rel="stylesheet" href="stylesheets/insurance.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div id="header">
+      <h1><span>Insurance</span></h1>
+    </div>
+    
+    <div id="content">
+      <h2>What is Insurance?</h2>
+      
+      <p>
+        Insurance is a test coverage analysis tool for Ruby.  Insurance uses
+        tracing, similar to rcov/Coverage, but is written as a C extension to
+        gain speed.  In general tests, Insurance runs 4 to 6 times slower than
+        a normal run of the test suite.  Compared with pure Ruby tracing
+        (via <code>set_trace_func</code>) this is a tremendous increase in
+        speed.
+      </p>
+      
+      <p>
+        Insurance currently does only line based coverage analysis, though there
+        are plans to add other types of analysis in future releases.
+      </p>
+      
+      <p>
+        Insurance also includes a runner script to make doing coverage analysis
+        of <a href="http://www.rubyonrails.com">Rails</a> applications extremely
+        easy.
+      </p>
+      
+      <h2>What is required to run Insurance?</h2>
+      
+      <p>
+        Insurance requires Ruby 1.8.3 and the Syntax package.
+      </p>
+      <p>
+        Insurance does contain a C extension, so you'll need to be able to build
+        one. Insurance builds and works great on Linux, BSD, and OSX. I do not
+        know anything about using Ruby on Windows, or building C extensions on
+        Windows. If you're a Windows user and know how to get this packaged up,
+        please contact me. Otherwise I have no plans to acquire, install, and
+        learn Windows in order to package Insurance for it.
+      </p>
+      
+      <h2>How do I get Insurance?</h2>
+      
+      <p>
+        You can always find information about the current release of Insurance
+        right <a href="current.html">here</a>. Also, see the links off to the
+        right.
+      </p>
+      
+      <h2>What does the output look like?</h2>
+      
+      <ul>
+        <li><a href="">Output from a sample Rails application.</a></li>
+        <li><a href="">A short movie demonstrating how this output was generated.</a></li>
+      </ul>
+      
+      <h2>Who created this?</h2>
+      
+      <p>
+        Insurance is an open source project created by 
+        <a href="http://lunchboxsoftware.com">Lunchbox Software</a>.  If
+        you would like to contact me about Insurance, please send mail to
+        insurance at elitists.net.
+      </p>
+    </div>
+    
+    <div id="sidebar">
+      <div>
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="index.html">Main Page</a></li>
+          <li><a href="current.html">Current Release Notes</a></li>
+          <li><a href="installation.html">Installation and Usage</a></li>
+          <li><a href="past-releases.html">Past Releases</a></li>
+          <li><a href="http://rubyforge.org/frs/?group_id=1045">All Files</a></li>
+          <li><a href="http://lunchboxsoftware.com">Lunchbox Software</a></li>
+        </ul>
+      
+        <h2>Coverage Analysis</h2>
+        <ul>
+          <li><a href="http://www.bullseye.com/coverage.html">A good CA article</a></li>
+        </ul>
+      
+        <hr />
+        <p>Current release: 0.1</p>
+      </div>
+    </div>
+  </body>
+</html>

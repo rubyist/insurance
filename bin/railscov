@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'insurance'
+rescue LoadError
+  require 'rubygems'
+  require 'insurance'
+end
+require 'optparse'
+
+options = {}
+opts = OptionParser.new do |opts|
+  opts.banner = <<-EOF
+Insurance Rails Runner #{Insurance::VERSION}, #{Insurance::RELEASE_DATE}
+Usage: railscov [options]
+EOF
+  
+  opts.separator ''
+  opts.on('-A', '--apply-to DIRECTORY',
+    'Create a Rake task for running the ',
+    'Insurance analyzer.',
+    'Currently only works with Rails apps.'
+  ) { |value| options[:apply_to] = value }
+  
+  opts.separator ''
+  opts.on_tail('-h', '--help', 'Show this message') do
+    puts opts
+    exit
+  end
+  opts.on_tail('--version', 'Show version') do
+    puts "Insurance #{Insurance::VERSION}, #{Insurance::RELEASE_DATE}"
+  end
+end
+opts.parse! ARGV
+
+if options[:apply_to]
+  require 'insurance/generators/rails/loader'
+  InsuranceLoader::Generators::RailsLoader.load! options
+  exit
+end
+
+unless File.exist?('config/environment.rb')
+  puts 'Please run railscov from your RAILS_ROOT'
+  exit
+end
+
+
+# We modify Test::Unit::TestCase so that tracing is only turned on
+# when executing a test.  This avoids tracing framework loading
+# and speeds things up by a great deal.
+
+require 'test/unit'
+module Test
+  module Unit
+    include Assertions
+    class TestCase
+      def run(result)
+        yield(STARTED, name)
+        @_result = result
+        begin
+          setup
+          Insurance.set_trace_func Insurance::RailsAnalyzer.method(:line_trace_func).to_proc
+          __send__(@method_name)
+          rescue AssertionFailedError => e
+          add_failure(e.message, e.backtrace)
+        rescue StandardError, ScriptError
+          add_error($!)
+        ensure
+          Insurance.set_trace_func nil
+          begin
+          teardown
+          rescue AssertionFailedError => e
+            add_failure(e.message, e.backtrace)
+          rescue StandardError, ScriptError
+            add_error($!)
+          end
+        end
+        result.add_run
+        yield(FINISHED, name)
+      end
+    end
+  end
+end
+
+Insurance::RailsAnalyzer.run(Dir['test/unit/*.rb'] + Dir['test/functional/*.rb'])

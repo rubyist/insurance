@@ -1,0 +1,54 @@
+body {
+  color:              #444;
+  font-family:        Myriad, "Myriad Roman", "Myriad Pro", "Myriad Web", "Lucida Grande", "Trebuchet MS", Helvetica, Arial, san-serif;
+  font-size:          small;
+  letter-spacing:     0;
+  line-height:        1.2em;
+  margin:             0px;
+  padding:            0px;
+  text-decoration:    none;
+  word-spacing:       normal;
+}
+
+a:link, a:visited {
+  color:              #003B44;
+}
+
+h1 span {
+  display:            none;
+}
+
+h1 {
+  background-image:   url(/images/insurance.gif);
+  background-repeat:  no-repeat;
+  height:             48px;
+  margin:             0px;
+  padding:            0px;
+}
+
+#header {
+  background:         #C1DEE2;
+  border-bottom:      1px solid #C2C1FD;
+  padding:            10px;
+}
+
+#content {
+  border-right:       1px dotted #C1FCC3;
+  float:              left;
+  margin-right:       35%;
+  padding:            0px 25px;
+  width:              60%;
+}
+
+#sidebar {
+  float:              right;
+  position:           absolute;
+  right:              0px;
+  text-align:         center;
+  top:                68px;
+  width:              35%;
+}
+#sidebar div {
+  padding:            0px 25px;
+  text-align:         left;
+}

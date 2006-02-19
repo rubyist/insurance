@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Insurance</title>
+    <link rel="stylesheet" href="stylesheets/insurance.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div id="header">
+      <h1><span>Insurance</span></h1>
+    </div>
+    
+    <div id="content">
+      <h2>Current Release - 0.1</h2>
+      
+      <p>
+        This release is in true 'release early, release often' form.  It comes
+        with a number of caveats that you should be aware of.
+      </p>
+      
+      <p>
+        While the goal of Insurance is to be a general tool, this release
+        primarily focuses on the Rails runner.  While you can currently use
+        Insurance on any project with a test/unit based test suite, it's not
+        as simple as the Rails runner.
+      </p>
+      
+      <p>
+        Insurance requires Ruby 1.8.3.  Lots of people aren't using 1.8.3 yet,
+        so you will need to have this installed.  If you're worried about making
+        the switch, I suggest just installing 1.8.3 in your home directory.
+        Then, when you want to use it, just prepend its bin/ directory to your
+        PATH.  You can then install rubygems, rails, etc. and the 1.8.3 based
+        versions of everything will be used so long as its first in your PATH.
+      </p>
+      
+      <p>
+        In order to gain increases in speed, Insurance only traces Ruby's LINE
+        events.  This means that there might be an occasional construct 
+        (specifically one statement that spans multiple lines) that will get
+        marked as not being run when it has been run.  These should be fairly
+        easy to spot when browsing the report, however I would appreciate it if
+        you mail me with any constructs that get mis-analyzed so I can handle
+        them in post processing.
+      </p>
+      
+      <p>
+        I seem to have an issue where Insurance will cause a passing test to
+        if the test is using mock objects from Rails's test/mocks directory.
+        I'm still investigating this.
+      </p>
+      
+      <p>
+        If you want to be super helpful, you can run Insurance and report to
+        me the following information:
+      </p>
+      <ul>
+        <li>The time it takes for your tests to run normally vs the time it
+        takes them to run with Insurance.</li>
+        <li>If Insurance mis-analyzes any constructs (as discussed above)
+        what are those constructs?</li>
+        <li>If Insurance causes any tests to fail or error, do they use mock
+        objects?  If not, what does the test look like?</li>
+      </ul>
+    </div>
+    
+    <div id="sidebar">
+      <div>
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="index.html">Main Page</a></li>
+          <li><a href="current.html">Current Release Notes</a></li>
+          <li><a href="installation.html">Installation and Usage</a></li>
+          <li><a href="past-releases.html">Past Releases</a></li>
+          <li><a href="http://rubyforge.org/frs/?group_id=1045">All Files</a></li>
+          <li><a href="http://lunchboxsoftware.com">Lunchbox Software</a></li>
+        </ul>
+      
+        <h2>Coverage Analysis</h2>
+        <ul>
+          <li><a href="http://www.bullseye.com/coverage.html">A good CA article</a></li>
+        </ul>
+      
+        <hr />
+        <p>Current release: 0.1</p>
+      </div>
+    </div>
+  </body>
+</html>

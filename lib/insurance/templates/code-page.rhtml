@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title><%= file_under_test %></title>
+    <style type="text/css" media="screen">
+    /* <![CDATA[ */
+      body {
+        font-size: small;
+      }
+      
+      th { text-align: left; }
+      
+      .ruby .normal    {}
+      .ruby .comment   { color: #bfbfbf; }
+      .ruby .keyword   { color: #FF5600; font-weight: bold; }
+      .ruby .method    { color: #21439C; }
+      .ruby .class     { color: #21439C; }
+      .ruby .module    { color: #21439C; }
+      .ruby .punct     { color: #21439C; font-weight: bold; }
+      .ruby .symbol    { color: #21439C; }
+      .ruby .string    { color: #00A33F; }
+      .ruby .char      { color: #00A33F; }
+      .ruby .ident     { color: #21439C; }
+      .ruby .constant  { color: #A535AE; }
+      .ruby .regex     { color: #990000; }
+      .ruby .number    { }
+      .ruby .attribute { }
+      .ruby .global    { }
+      .ruby .expr      { }
+      
+      .unhit { background: #FFC6C6; }
+      
+      .right { text-align: right; }
+      
+      #code-tree {
+        float: left;
+        width: 30%;
+      }
+
+      #graph, #code {
+        margin-left: 30%;
+      }
+
+      #graph {
+        padding-left: 35px;
+        }
+
+    /* ]]> */
+    </style>
+    
+  </head>
+  <body>
+    <div id="header">
+      <h1>Insurance - <%= project_name %></h1>
+    </div>
+    <div id="code-tree">
+      <table>
+        <% files.each do |f| %>
+          <tr>
+            <td><a href="<%= "#{f.gsub('/', '-')}.html" %>"><%= f %></a></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div id="code">
+      <h2><%= file_under_test %></h2>
+      <%= body %>
+    </div>
+  </body>
+</html>
