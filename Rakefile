@@ -8,7 +8,7 @@ rescue Exception
   nil
 end
 
-PKG_VERSION = "0.3"
+PKG_VERSION = "0.3.3"
 
 desc "Default Task"
 task :default => :test

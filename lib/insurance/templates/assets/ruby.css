@@ -1,0 +1,76 @@
+.ruby .normal    { color: #ffffff; }
+.ruby .comment   { color: #615960; font-style: italic; }
+.ruby .keyword   { color: #d7ab5d; font-weight: bold; }
+.ruby .method    { color: #a77233; }
+.ruby .class     { color: #a77233; }
+.ruby .module    { color: #a77233; }
+.ruby .punct     { color: #ffffff; font-weight: bold; }
+.ruby .symbol    { color: #ec673e; }
+.ruby .string    { color: #85a264; }
+.ruby .char      { color: #85a264; }
+.ruby .ident     { color: #7085aa; }
+.ruby .constant  { color: #ec673e; }
+.ruby .regex     { color: #f3c54e; }
+.ruby .number    { color: #ec673e; }
+.ruby .attribute { color: #7085aa; }
+.ruby .global    { color: #7085aa; }
+.ruby .expr      { color: #7085aa; }
+
+.unhit { background: #660000; }
+
+pre {
+  font: 90% verdana, arial, sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+#code {
+  font-size: 125%;
+  font-weight: bold;
+}
+
+table.ruby {
+  border-collapse: collapse;
+}
+
+table.ruby td {
+  margin: 0px;
+}
+
+table.ruby td.lineno, table.ruby td.blame {
+  font-weight: normal;
+  text-align: right;
+  padding: 0px 5px;
+}
+
+.codeline {
+	background: #660000;
+	display: inline;
+}
+
+body.all span.unit, body.all span.functional, body.all span.integration {
+	background: #444444;
+}
+
+body.integration span.unit, body.integration span.functional {
+	background: #660000;
+}
+body.integration span.integration {
+	background: #444444;
+}
+
+
+body.functional span.unit, body.functional span.integration {
+	background: #660000;
+}
+body.functional span.functional {
+	background: #444444;
+}
+
+
+body.unit span.functional, body.unit span.integration {
+	background: #660000;
+}
+body.unit span.unit {
+	background: #444444;
+}

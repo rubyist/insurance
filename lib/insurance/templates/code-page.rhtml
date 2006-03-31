@@ -1,73 +1,68 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title><%= file_under_test %></title>
-    <style type="text/css" media="screen">
-    /* <![CDATA[ */
-      body {
-        font-size: small;
-      }
-      
-      th { text-align: left; }
-      
-      .ruby .normal    {}
-      .ruby .comment   { color: #bfbfbf; }
-      .ruby .keyword   { color: #FF5600; font-weight: bold; }
-      .ruby .method    { color: #21439C; }
-      .ruby .class     { color: #21439C; }
-      .ruby .module    { color: #21439C; }
-      .ruby .punct     { color: #21439C; font-weight: bold; }
-      .ruby .symbol    { color: #21439C; }
-      .ruby .string    { color: #00A33F; }
-      .ruby .char      { color: #00A33F; }
-      .ruby .ident     { color: #21439C; }
-      .ruby .constant  { color: #A535AE; }
-      .ruby .regex     { color: #990000; }
-      .ruby .number    { }
-      .ruby .attribute { }
-      .ruby .global    { }
-      .ruby .expr      { }
-      
-      .unhit { background: #FFC6C6; }
-      
-      .right { text-align: right; }
-      
-      #code-tree {
-        float: left;
-        width: 30%;
-      }
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+ ____________________________________________________________
+|                                                            |
+|    DESIGN + Pat Heard { http://fullahead.org }             |
+|      DATE + 2005.11.30                                     |
+| COPYRIGHT + Free use if this notice is left in place       |
+|____________________________________________________________|
 
-      #graph, #code {
-        margin-left: 30%;
-      }
+-->
+<head>
+	<title>Insurance - <%= file_under_test %></title>
+	<script src="<%= asset_dir %>/prototype.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script type="text/javascript" language="javascript" charset="utf-8">
+	// <![CDATA[
+		function setBodyType(sel) {
+			$('body').className = sel.id.split('-')[1];
+			document.getElementsByClassName('active').each(function(el) { el.className = ''; });
+			sel.className = 'active';
+		}
+	// ]]>
+	</script>
+	<link rel="stylesheet" type="text/css" href="<%= asset_dir %>/screen5.css" media="screen, print" />
+	<link rel="stylesheet" type="text/css" href="<%= asset_dir %>/ruby.css" media="screen, print" />
+	<style type="text/css">
+	<!--
+	.style1 {color: #FFFFFF}
+	-->
+	  </style>
+</head>
+<body id="body" class="all">
+	<div class="body_header">&nbsp;</div>
+	<div class="wrap">
+  	<div id="header">
+    	<div id="menu">
+      	<ul>
+	        <li><a href="index.html">Project</a></li>
+	        <li><a href="#" id="sel-all" onclick="setBodyType(this);" class="active">All Tests</a></li>
+	        <li><a href="#" id="sel-unit" onclick="setBodyType(this);">Units</a></li>
+	        <li><a href="#" id="sel-functional" onclick="setBodyType(this);">Functionals</a></li>
+	        <li><a href="#" id="sel-integration" onclick="setBodyType(this);">Integration</a></li>
+	      </ul>
+	      <div id="title">
+	        <h1>Insurance</h1>
+	      </div>
+    	</div>
+  	</div>
+  	<div id="content">
+    	<div id="text">
+      	<h1><span><a href="txmt://open?url=file://<%= File.expand_path(file_under_test) %>"><%= file_under_test %></a></span></h1>
+	    	<div id="code">
+					<%= body %>
+				</div>
+    	</div>
 
-      #graph {
-        padding-left: 35px;
-        }
+    	<div id="image">&nbsp;</div>
 
-    /* ]]> */
-    </style>
-    
-  </head>
-  <body>
-    <div id="header">
-      <h1>Insurance - <%= project_name %></h1>
-    </div>
-    <div id="code-tree">
-      <table>
-        <% files.each do |f| %>
-          <tr>
-            <td><a href="<%= "#{f.gsub('/', '-')}.html" %>"><%= f %></a></td>
-            <td></td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-    <div id="code">
-      <h2><%= file_under_test %></h2>
-      <%= body %>
-    </div>
-  </body>
+    	<div id="sideBar">
+				<% files.each do |f| %>
+					<a href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= f %></span</a>
+				<% end %>
+    	</div>
+  	</div>
+	</div>
+</body>
 </html>

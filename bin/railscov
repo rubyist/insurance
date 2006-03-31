@@ -23,12 +23,22 @@ EOF
   ) { |value| options[:apply_to] = value }
   
   opts.separator ''
+  opts.on('-r', '--report [DATABASE]',
+    'Generate a report using the optional file.') do |value|
+      options[:report] = true
+      options[:report_db] = value
+  end
+  opts.on('-o', '--output DIRECTORY',
+    'Directory for report output.') { |value| options[:report_out] = value }
+  
+  opts.separator ''
   opts.on_tail('-h', '--help', 'Show this message') do
     puts opts
-    exit
+    exit!(0)
   end
   opts.on_tail('--version', 'Show version') do
     puts "Insurance #{Insurance::VERSION}, #{Insurance::RELEASE_DATE}"
+    exit!(0)
   end
 end
 opts.parse! ARGV
@@ -36,12 +46,21 @@ opts.parse! ARGV
 if options[:apply_to]
   require 'insurance/generators/rails/loader'
   InsuranceLoader::Generators::RailsLoader.load! options
-  exit
+  exit!(0)
+end
+
+if options[:report]
+  reportdb = options[:report_db] || 'insurance.db'
+  outdir   = options[:report_out] || 'insurance'
+  
+  puts "Running the report from #{reportdb}, output to #{outdir}"
+  Insurance::Formatter.run(reportdb, outdir)
+  exit!(0)
 end
 
 unless File.exist?('config/environment.rb')
   puts 'Please run railscov from your RAILS_ROOT'
-  exit
+  exit!(0)
 end
 
 
@@ -82,4 +101,6 @@ module Test
   end
 end
 
-Insurance::RailsAnalyzer.run(Dir['test/unit/**/*.rb'] + Dir['test/functional/**/*.rb'])
+Insurance::RailsAnalyzer.run(ARGV[0])
+
+#Insurance::RailsAnalyzer.run(Dir['test/unit/**/*.rb'] + Dir['test/functional/**/*.rb'])

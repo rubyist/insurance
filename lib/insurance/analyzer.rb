@@ -5,9 +5,20 @@ module Insurance
   END {
     Insurance.set_trace_func nil
     
-    Dir.mkdir('insurance') unless File.exist?('insurance')
+    section = ARGV[0].split('/').last.to_sym
+    x = {}
+    FILELIST.each do |k,v|
+      x[k] = v.lines
+    end
     
-    Insurance::Formatter.run(Insurance::FILELIST)    
+    if File.exist?('insurance.db')
+      data = Marshal.load(open('insurance.db'))
+    else
+      data = {}
+    end
+    data[section] = x
+    
+    open('insurance.db', 'w').write(Marshal.dump(data))
   }
   
   class Analyzer
@@ -51,7 +62,11 @@ module Insurance
       end
     end
     
-    def self.run(files)
+    def self.run(dir)
+      $thedirname = dir
+      files = Dir["#{dir}/**/*.rb"]
+      puts files.inspect
+      
       # The rails analyzer does not need to set the trace func, because that is
       # done in the perversion of Test::Unit::TestCase.
       
@@ -60,6 +75,8 @@ module Insurance
       # all of the application's models and controllers so that we can trace things
       # at the class level.  This is just easier to do than to try and figure out
       # what should really be marked as hit in the output stage.
+
+#        files.each { |f| load f }
       
       pipe = IO.popen('-', 'w+')
       if pipe

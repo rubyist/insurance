@@ -4,6 +4,6 @@ require 'insurance/source_file'
 require 'insurance/formatter'
 
 module Insurance
-  VERSION      = '0.1'
-  RELEASE_DATE = '28 Oct 2005'
+  VERSION      = '0.3.3'
+  RELEASE_DATE = '30 March 2006'
 end
