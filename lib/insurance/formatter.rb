@@ -7,7 +7,6 @@ module Insurance
     include ERB::Util
     
     def self.svn_blame_for(file)
-      return [] # XXX
       if File.exist?(File.dirname(File.expand_path(file)) + '/.svn')
         `svn blame #{file}`.split("\n").map {|l| l.split[1]}.map { |l| l.split('@')[0] }
       else
