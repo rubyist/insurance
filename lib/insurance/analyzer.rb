@@ -63,9 +63,7 @@ module Insurance
     end
     
     def self.run(dir)
-      $thedirname = dir
       files = Dir["#{dir}/**/*.rb"]
-      puts files.inspect
       
       # The rails analyzer does not need to set the trace func, because that is
       # done in the perversion of Test::Unit::TestCase.
