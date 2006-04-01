@@ -254,6 +254,46 @@ blockquote span {
   background: transparent url("left.jpg") no-repeat right top;
 }
 
+#text table.allstats {
+  width: 95%;
+  margin: 0px auto;
+  border-collapse: collapse;
+}
+#text table.allstats td {
+  padding: 2px;
+  border: 1px solid #686868;
+}
+
+#text table.allstats td.number {
+  border-right: 0px;
+  text-align: right;
+}
+
+#text table.allstats td.graph {
+  border-left: 0px;
+  width: 210px;
+  text-align: center;
+}
+
+.graph_outer {
+  background: #660000;
+  width: 200px;
+  height: 12px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+
+.graph_inner {
+  background: #45A51D;
+  height: 12px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 
 /**  Center Column ***/
 #image {

@@ -36,7 +36,35 @@
   	<div id="content">
     	<div id="text">
       	<h1><span><%= project_name %></span></h1>
-				<div>Average Coverage: <%= '%.2f' % average_coverage %>%</div>
+				<table class="allstats">
+					<tr>
+						<th class="number"> </th>
+						<th class="number">Total</th>
+						<th class="graph"> </th>
+					<tr>
+						<td class="file">Project</td>
+						<td class="number"><%= '%.2f' % average_coverage %>%</td>
+						<td class="graph">
+							<div class="graph_outer">
+								<div class="graph_inner" style="width: <%= average_coverage.to_i %>%;"></div>
+							</div>
+						</td>
+					</tr>
+					<tr><td class="number"></td><td class="number"></td><td class="graph"></td></tr>
+					<% files.each do |f| %>
+						<tr>
+							<td class="file"><%= f %></td>
+							<td class="number">
+								<%= '%.2f' % project_coverage[f] %>%
+							</td>
+							<td class="graph">
+								<div class="graph_outer">
+									<div class="graph_inner" style="width: <%= project_coverage[f].to_i %>%;"></div>
+								</div>
+							</td>
+						</tr>
+					<% end %>
+				</table>
     	</div>
 
     	<div id="image">&nbsp;</div>
