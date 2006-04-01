@@ -14,7 +14,7 @@ body {
   margin: 0;  
   text-align: center;
   font: 0.62em verdana, arial, sans-serif;  
-  line-height: 170%;
+  line-height: 150%;
   color: #EEE;
 background: #585858 url(bg_body2.jpg) repeat top center;
 text-align:center;
@@ -109,7 +109,7 @@ h1 {
 
 h1 span {
   display: block;
-  padding: 2px;
+  padding: 4px;
   background: url(rounded_br.gif) no-repeat bottom right;
 }
 
@@ -267,7 +267,6 @@ blockquote span {
 /** Right column  **/
 #sideBar {
   float: left;
-  float:left; 
   width: 18% !important; /** mozilla **/
   width: 20.25%; /** explorer  **/
   padding: 5px 0px; padding-left:1.2% !important;/** mozilla **/
@@ -280,19 +279,23 @@ blockquote span {
  ***************************************************/
 
 .sideMenu {
-  padding: 10px 0;
+  padding: 0px;
 }
 
 .sideMenu a {
   display: block;
   text-align: right;
   text-decoration: none;
-  margin-bottom: 1px;  
+  margin: 0px;
+  padding: 0px;
+/*  margin-bottom: 1px;   */
 }
 
 .sideMenu a span {
   display: block;
-  padding: 1px;
+  margin: 0px;
+  padding: 0px;
+/*  padding: 1px; */
 }
 
 .sideMenu a:hover {
@@ -302,6 +305,11 @@ blockquote span {
 .sideMenu a:hover span {
   background: url(rounded_bl.gif) no-repeat bottom left;
 }
+
+.sideMenu a.selected span {
+  background: #45A51D;
+}
+
 
 /***************************************************
  Comment Styles

@@ -11,7 +11,7 @@
 
 -->
 <head>
-	<title>Insurance - <%= project_name %></title>
+	<title>Insurance - <%= project_name %> - <%= '%.2f' % average_coverage %>%</title>
 	<script src="<%= asset_dir %>/prototype.js" type="text/javascript" language="javascript" charset="utf-8"></script>
 	<link rel="stylesheet" type="text/css" href="<%= asset_dir %>/screen5.css" media="screen, print" />
 	<style type="text/css">
@@ -35,16 +35,33 @@
   	</div>
   	<div id="content">
     	<div id="text">
-      	<h1><%= project_name %></h1>
-				<div>I still don't have much to put here yet.  Soon.</div>
+      	<h1><span><%= project_name %></span></h1>
+				<div>Average Coverage: <%= '%.2f' % average_coverage %>%</div>
     	</div>
 
     	<div id="image">&nbsp;</div>
 
     	<div id="sideBar">
-				<% files.each do |f| %>
-					<a href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= f %></span</a>
-				<% end %>
+				<h1><span>Controllers</span></h1>
+				<div class="sideMenu">
+					<% controller_files.each do |f| %>
+						<a href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= File.basename(f) %></span</a>
+					<% end %>
+				</div>
+
+				<h1><span>Models</span></h1>
+				<div class="sideMenu">
+					<% model_files.each do |f| %>
+						<a href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= File.basename(f) %></span</a>
+					<% end %>
+				</div>
+
+				<h1><span>Libraries</span></h1>
+				<div class="sideMenu">
+					<% lib_files.each do |f| %>
+						<a href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= File.basename(f) %></span</a>
+					<% end %>
+				</div>
     	</div>
   	</div>
 	</div>

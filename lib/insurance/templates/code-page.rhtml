@@ -58,10 +58,28 @@
     	<div id="image">&nbsp;</div>
 
     	<div id="sideBar">
-				<% files.each do |f| %>
-					<a href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= f %></span</a>
-				<% end %>
+				<h1><span>Controllers</span></h1>
+				<div class="sideMenu">
+					<% controller_files.each do |f| %>
+						<a <%= 'class="selected"' if File.basename(f) == File.basename(file) %> href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= File.basename(f) %></span</a>
+					<% end %>
+				</div>
+
+				<h1><span>Models</span></h1>
+				<div class="sideMenu">
+					<% model_files.each do |f| %>
+						<a <%= 'class="selected"' if File.basename(f) == File.basename(file) %> href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= File.basename(f) %></span</a>
+					<% end %>
+				</div>
+
+				<h1><span>Libraries</span></h1>
+				<div class="sideMenu">
+					<% lib_files.each do |f| %>
+						<a <%= 'class="selected"' if File.basename(f) == File.basename(file) %> href="<%= "#{f.gsub('/', '-')}.html" %>"><span style="white-space: nowrap;"><%= File.basename(f) %></span</a>
+					<% end %>
+				</div>
     	</div>
+			
   	</div>
 	</div>
 </body>

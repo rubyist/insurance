@@ -16,6 +16,7 @@ module Insurance
     
     def self.run(dbfile, outputdir)
       raw = Marshal.load(open(dbfile))
+      project_coverage = {}
 
       unless File.exist?(outputdir)
         Dir.mkdir(outputdir)
@@ -24,13 +25,24 @@ module Insurance
       asset_dir = File.dirname(__FILE__) + "/templates/assets"
       
       files = raw.keys.inject([]) { |arr, k| arr += raw[k].keys; arr }.uniq.sort
+      
+      controller_files = []
+      model_files      = []
+      lib_files        = []
+      
+      files.each do |file|
+        case file
+        when /app\/controllers\//
+          controller_files << file
+        when /app\/models\//
+          model_files << file
+        when /lib\//
+          lib_files << file
+        end
+      end
 
       project_name    = File.basename Dir.pwd
 
-      File.open("#{outputdir}/index.html", 'w') do |f|
-        f.write ERB.new(File.read("#{File.dirname(__FILE__)}/templates/index.rhtml")).result(binding)
-        puts "Wrote #{outputdir}/index.html"
-      end
 
       files.each do |file, lines|
         contents = File.open(file, 'r').readlines
@@ -72,13 +84,12 @@ module Insurance
             executable_lines << num + 1 unless sline.empty? || sline =~ /^#/
           end
 
-          puts "EXECUTED LINES: #{exelines.size}, EXECUTABLE LINES: #{executable_lines.size}"
           if executable_lines.size > 0
             percentage = (exelines.size.to_f / executable_lines.size) * 100
           else
             percentage = 0
           end
-          puts "FUCKING PERCENTAGE IS #{percentage}"
+          project_coverage[file] = percentage
           
           file_under_test = "#{file} - #{'%.2f' % percentage}%"
 
@@ -109,6 +120,13 @@ module Insurance
           f.write ERB.new(File.read("#{File.dirname(__FILE__)}/templates/code-page.rhtml")).result(binding)
           puts "Wrote #{outputdir}/#{file.gsub('/', '-')}.html"
         end
+      end
+      
+      
+      average_coverage = project_coverage.values.inject(0) { |s, v| s + v } / project_coverage.values.size
+      File.open("#{outputdir}/index.html", 'w') do |f|
+        f.write ERB.new(File.read("#{File.dirname(__FILE__)}/templates/index.rhtml")).result(binding)
+        puts "Wrote #{outputdir}/index.html"
       end
     end
   end
