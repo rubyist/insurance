@@ -6,14 +6,6 @@ module Insurance
   class Formatter
     include ERB::Util
     
-    def self.svn_blame_for(file)
-      if File.exist?(File.dirname(File.expand_path(file)) + '/.svn')
-        `svn blame #{file}`.split("\n").map {|l| l.split[1]}.map { |l| l.split('@')[0] }
-      else
-        []
-      end
-    end
-    
     def self.run(dbfile, outputdir)
       raw = Marshal.load(open(dbfile))
       project_coverage = {}
@@ -68,7 +60,6 @@ module Insurance
 
       # Create html output
       files.each do |file, lines|
-        blame = svn_blame_for(file)
 
         File.open("#{outputdir}/#{file.gsub('/', '-')}.html", 'w') do |f|
 
@@ -110,9 +101,6 @@ module Insurance
             body << "<tr><td class=\"lineno\">"
             body << "<a href=\"txmt://open?url=file://#{File.expand_path(file)}&line=#{lineno}\">#{lineno}</a>"
             body << "</td>"
-            unless blame.empty?
-              body << "<td class=\"blame\">#{blame[num]}</td>"
-            end
             body << "<td><pre>  <span class=\"codeline #{classes * ' '}\">#{Syntax::Convertors::HTML.for_syntax('ruby').convert(line, false)}</span>"
             body << "</td></tr>"
           end
