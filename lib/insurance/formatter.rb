@@ -1,6 +1,7 @@
 require 'erb'
 require 'syntax'
 require 'syntax/convertors/html'
+require 'fileutils'
 
 module Insurance
   class Formatter
@@ -10,11 +11,13 @@ module Insurance
       raw = Marshal.load(open(dbfile))
       project_coverage = {}
 
-      unless File.exist?(outputdir)
-        Dir.mkdir(outputdir)
-      end
+      asset_dir = "assets"
+      FileUtils.mkdir_p "#{outputdir}/assets"
       
-      asset_dir = File.dirname(__FILE__) + "/templates/assets"
+      # Copy assets
+      Dir["#{File.dirname(__FILE__)}/templates/assets/*"].each do |f|
+        FileUtils.cp f, "#{outputdir}/assets"
+      end
       
       files = raw.keys.inject([]) { |arr, k| arr += raw[k].keys; arr }.uniq.sort
       
