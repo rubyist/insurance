@@ -11,14 +11,16 @@ module Insurance
       x[k] = v.lines
     end
     
-    if File.exist?('insurance.db')
-      data = Marshal.load(open('insurance.db'))
+    FileUtils.mkdir_p "insurance" unless File.exist?('insurance')
+    
+    if File.exist?('insurance/insurance.db')
+      data = Marshal.load(open('insurance/insurance.db'))
     else
       data = {}
     end
     data[section] = x
     
-    open('insurance.db', 'w').write(Marshal.dump(data))
+    open('insurance/insurance.db', 'w').write(Marshal.dump(data))
   }
   
   class Analyzer

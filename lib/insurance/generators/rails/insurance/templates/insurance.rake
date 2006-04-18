@@ -26,7 +26,7 @@ namespace 'insurance' do
   
   desc 'Clean up Insurance temporary database'
   task :clean do
-    rm_f 'insurance.db'
+    rm_f 'insurance/insurance.db'
   end
   
   desc 'Generate the Insurance report'

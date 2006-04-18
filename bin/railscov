@@ -50,7 +50,7 @@ if options[:apply_to]
 end
 
 if options[:report]
-  reportdb = options[:report_db] || 'insurance.db'
+  reportdb = options[:report_db] || 'insurance/insurance.db'
   outdir   = options[:report_out] || 'insurance'
   
   puts "Running the report from #{reportdb}, output to #{outdir}"
