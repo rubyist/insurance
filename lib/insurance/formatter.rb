@@ -70,7 +70,7 @@ module Insurance
           executable_lines = []
 
           # Lines that were executed by the tests
-          exelines   = [:unit, :functional, :integration].map { |k| raw[k][file] }.flatten.uniq.sort
+          exelines   = [:unit, :functional, :integration].map { |k| raw[k][file] || [] }.flatten.uniq.sort
 
           # Get all lines that aren't comments
           contents.each_with_index do |line, num|
